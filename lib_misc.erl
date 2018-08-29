@@ -57,3 +57,6 @@ my_date_string() ->
     D=erlang:date(),
     T=erlang:time(),
     io_lib:format("~b-~b-~b ~b:~b ~n",[element(1, D), element(2, D),element(3, D), element(1, T), element(2, T)]). % Refer https://gist.github.com/dergraf/2216802
+
+% TODO Personal Solve the c4q5 advanced question
+
