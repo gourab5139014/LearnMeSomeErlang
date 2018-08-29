@@ -7,7 +7,7 @@ qsort([Pivot|T]) ->
 
 pythag(N) -> 
     [{P, Q, R} || 
-    P <- lists:seq(1, N), % TODO Again, ask about the comma here. Are all of these qualifiers supposed to return true? How about the lists:seq() then ?
+    P <- lists:seq(1, N), % DONE Again, ask about the comma here. Are all of these qualifiers supposed to return true? How about the lists:seq() then ?
     Q <- lists:seq(1, N),
     R <- lists:seq(1, N),
     P + Q + R =< N,
@@ -25,20 +25,9 @@ my_time_func(F) ->
     io:format('~p~n',[T2]),   
     timer:now_diff(T2, T1).
 
-% TODO Ask (DONE) marc about managing multiple erlang runtimes on a development system? Is something like a virtualenv available ? -- Use a Docker container to built for specific Erlang distributions
+% TODO Ask marc about managing multiple erlang runtimes on a development system? Is something like a virtualenv available ? -- Use a Docker container to built for specific Erlang distributions
 
-% TODO (DONE) My head hurts after looking at the io:format documentation. Can we have a simple thumb rule to summarize most common use cases? ~p~w any Erlang term , ~s io_list as string, ~b integer, ~n newline.
-
-odds_evens(L) ->
-    odds_evens_acc(L, [], []).
-
-odds_evens_acc([H|T], Odds, Evens) ->
-    case (H rem 2) of
-        1 -> odds_evens_acc(T, [H|Odds], Evens);
-        0 -> odds_evens_acc(T, Odds, [H|Evens])
-    end;
-odds_evens_acc([], Odds, Evens) ->
-    {Odds, Evens}.
+% DONE My head hurts after looking at the io:format documentation. Can we have a simple thumb rule to summarize most common use cases? ~p~w any Erlang term , ~s io_list as string, ~b integer, ~n newline.
 
 % c4q2
 my_tuple_to_list_helper(T, Lim, Lim, L) ->
