@@ -1,5 +1,5 @@
 -module(lib_misc).
--export([qsort/1, pythag/1, perms/1, my_time_func/1, odds_evens/1, my_tuple_to_list/1, my_tuple_to_list2/1, my_date_string/0]).
+-export([qsort/1, pythag/1, perms/1, my_time_func/1, my_tuple_to_list/1, my_tuple_to_list2/1, my_date_string/0, my_counter/1, map_search_pred/2]).
 
 qsort([]) -> [];
 qsort([Pivot|T]) ->
@@ -49,3 +49,19 @@ my_date_string() ->
 
 % TODO Personal Solve the c4q5 advanced question
 
+my_counter(Str) -> my_counter(Str, maps:new()).
+
+% my_counter([H|T], #{H := N}=X) -> my_counter(T, X#{H := N+1}); % TODO Ask Marc about the error : 'H' is unbound
+% my_counter([H|T], X) when maps:is_key(H, X) -> N = maps:get(H, X), my_counter(T, X#{H := N+1}); % TODO Is this some 'hangover' coding style from other languages?
+my_counter([H|T], X) -> my_counter(T, X#{H => 1});
+my_counter([], X) -> X.
+
+map_search_pred(Map, Pred) when is_function(Pred, 2), is_map(Map) ->
+    map_search_pred(maps:to_list(Map), Pred);
+map_search_pred([],_) -> error;
+map_search_pred([{Key, Value}=H|T], Pred) ->
+    case Pred(Key, Value) of
+        true -> {ok, H};
+        false -> map_search_pred(T, Pred)
+    end.
+    
