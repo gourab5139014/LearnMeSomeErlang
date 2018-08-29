@@ -1,5 +1,5 @@
 -module(lib_misc).
--export([qsort/1, pythag/1, perms/1, my_time_func/1, odds_evens/1, my_tuple_to_list/1, my_tuple_to_list2/1]).
+-export([qsort/1, pythag/1, perms/1, my_time_func/1, odds_evens/1, my_tuple_to_list/1, my_tuple_to_list2/1, my_date_string/0]).
 
 qsort([]) -> [];
 qsort([Pivot|T]) ->
@@ -52,3 +52,8 @@ my_tuple_to_list(T) ->
 
 my_tuple_to_list2(T) ->
     [element(Pos, T) || Pos <- lists:seq(1, tuple_size(T))]. % Cool solution from https://stackoverflow.com/questions/16220993/erlang-elegant-tuple-to-list-1
+
+my_date_string() ->
+    D=erlang:date(),
+    T=erlang:time(),
+    io_lib:format("~b-~b-~b ~b:~b ~n",[element(1, D), element(2, D),element(3, D), element(1, T), element(2, T)]). % Refer https://gist.github.com/dergraf/2216802
