@@ -2,7 +2,7 @@
 -export([area/1, perimeter/1, test/0]).
 
 test() ->
-    144 = area({square, 12}), % TODO Ask Mark about usage of comma, difference with ;
+    144 = area({square, 12}), % DONE Ask Mark about usage of comma, difference with ;
     tests_worked.
 
 area({circle, Radius}) -> math:pi() * Radius * Radius;

@@ -78,3 +78,8 @@ map_search_pred([{Key, Value}=H|T], Pred) ->
 
 % TODO json_to_map(FileName) ->
 %     tuples
+
+sqrt(X) when X < 0 ->
+    error({squareRootNegativeArgument, X});
+sqrt(X) ->
+    math:sqrt(X).
